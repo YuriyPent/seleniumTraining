@@ -26,5 +26,12 @@ public class Login {
         //6. Get confirmation
         String message = driver.findElement(By.id("conf_message")).getText();
         System.out.println("CONFIRMATION: " + message);
+
+        String pageTitle = driver.getTitle();
+        System.out.println("PAGE TITLE: " + pageTitle);
+
+        //7. Close the browser
+        driver.close();
+
     }
 }
