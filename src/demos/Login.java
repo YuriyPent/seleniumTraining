@@ -22,5 +22,9 @@ public class Login {
 
         //5. Click login
         driver.findElement(By.name("ctl00$MainContent$btnLogin")).click();
+
+        //6. Get confirmation
+        String message = driver.findElement(By.id("conf_message")).getText();
+        System.out.println("CONFIRMATION: " + message);
     }
 }
