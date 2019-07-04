@@ -17,9 +17,9 @@ public class NewAccount {
         String browserType = "chrome";
 
         String gender = "Female";
-        String weeklyEmail;
-        String monthlyEmail;
-        String occassionalEmail;
+        boolean weeklyEmail = true;
+        boolean monthlyEmail = false;
+        boolean occassionalEmail = false;
 
 //      Define WebDriver
         WebDriver driver;
@@ -36,6 +36,7 @@ public class NewAccount {
         WebElement countryElement = driver.findElement(By.id("MainContent_menuCountry"));
         WebElement maleRadio = driver.findElement(By.name("ctl00$MainContent$Gender"));
         WebElement femaleRadio = driver.findElement(By.id("MainContent_Female"));
+        WebElement weeklyCheckbox = driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail"));
 
 //      Fill out the form
         nameElement.sendKeys(name);
@@ -46,13 +47,22 @@ public class NewAccount {
         new Select(countryElement).selectByVisibleText(country);
 
 //      Gender radio button algorithm
-        if (gender.equalsIgnoreCase("Male")){
+        if (gender.equalsIgnoreCase("Male")) {
             maleRadio.click();
-        }else {
+        } else {
             femaleRadio.click();
         }
+//      Check box algorithm
+        if (weeklyEmail) {
+            if (!weeklyCheckbox.isSelected()) {
+                weeklyCheckbox.click();
+            }
+        } else {
+            if (weeklyCheckbox.isSelected()) {
+                weeklyCheckbox.click();
+            }
+        }
 
-        driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail")).click();
         driver.findElement(By.id("MainContent_btnSubmit")).click();
 
 //      Get confirmation & close the browser
