@@ -2,6 +2,7 @@ package demos;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class NewAccount {
@@ -13,46 +14,46 @@ public class NewAccount {
         String password = "mspass";
         String country = "United States";
         String phoneNumber = "123456789";
+        String browserType = "chrome";
 
         String gender;
         String weeklyEmail;
         String monthlyEmail;
         String occassionalEmail;
 
-        String browserType = "chrome";
+//      Define WebDriver
         WebDriver driver;
-
-//        1. Open browser to account page --> click create account
         driver = utilities.DriverFactory.open(browserType);
         driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
         driver.findElement(By.xpath("//*[@id=\"ctl01\"]/div[3]/div[2]/div/div[2]/a")).click();
 
-//        3. Fill out the form
-//        How to locate elements
-        driver.findElement(By.name("ctl00$MainContent$txtFirstName"))
-                .sendKeys(name);
-        driver.findElement(By.id("MainContent_txtEmail"))
-                .sendKeys(email);
-        driver.findElement(By.xpath("//*[@id=\"MainContent_txtHomePhone\"]"))
-                .sendKeys(phoneNumber);
-        driver.findElement(By.cssSelector("input[id='MainContent_txtPassword']"))
-                .sendKeys(password);
-        driver.findElement(By.name("ctl00$MainContent$txtVerifyPassword"))
-                .sendKeys(password);
+//      Define web elements
+        WebElement nameElement = driver.findElement(By.name("ctl00$MainContent$txtFirstName"));
+        WebElement emailElement = driver.findElement(By.id("MainContent_txtEmail"));
+        WebElement phoneElement = driver.findElement(By.xpath("//*[@id=\"MainContent_txtHomePhone\"]"));
+        WebElement passwordElement = driver.findElement(By.cssSelector("input[id='MainContent_txtPassword']"));
+        WebElement verifypasswordElement = driver.findElement(By.name("ctl00$MainContent$txtVerifyPassword"));
+        WebElement countryElement = driver.findElement(By.id("MainContent_menuCountry"));
 
-//          How to interact with other HTML elements
+
+
+//      Fill out the form
+        nameElement.sendKeys(name);
+        emailElement.sendKeys(email);
+        phoneElement.sendKeys(phoneNumber);
+        passwordElement.sendKeys(password);
+        verifypasswordElement.sendKeys(password);
+        new Select(countryElement).selectByVisibleText(country);
+
+//      How to interact with other HTML elements
         driver.findElement(By.id("MainContent_Female")).click();
-        new Select(driver.findElement(By.id("MainContent_menuCountry")))
-                .selectByVisibleText(country);
+
         driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail")).click();
         driver.findElement(By.id("MainContent_btnSubmit")).click();
 
-//       4. Get confirmation
+//      Get confirmation & close the browser
         String conf = driver.findElement(By.id("MainContent_lblTransactionResult")).getText();
         System.out.println("CONFIRMATION: " + conf);
-
-//      5. Close the browser
         driver.close();
-
     }
 }
