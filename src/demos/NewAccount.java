@@ -16,7 +16,7 @@ public class NewAccount {
         String phoneNumber = "123456789";
         String browserType = "chrome";
 
-        String gender;
+        String gender = "Female";
         String weeklyEmail;
         String monthlyEmail;
         String occassionalEmail;
@@ -34,8 +34,8 @@ public class NewAccount {
         WebElement passwordElement = driver.findElement(By.cssSelector("input[id='MainContent_txtPassword']"));
         WebElement verifypasswordElement = driver.findElement(By.name("ctl00$MainContent$txtVerifyPassword"));
         WebElement countryElement = driver.findElement(By.id("MainContent_menuCountry"));
-
-
+        WebElement maleRadio = driver.findElement(By.name("ctl00$MainContent$Gender"));
+        WebElement femaleRadio = driver.findElement(By.id("MainContent_Female"));
 
 //      Fill out the form
         nameElement.sendKeys(name);
@@ -45,8 +45,12 @@ public class NewAccount {
         verifypasswordElement.sendKeys(password);
         new Select(countryElement).selectByVisibleText(country);
 
-//      How to interact with other HTML elements
-        driver.findElement(By.id("MainContent_Female")).click();
+//      Gender radio button algorithm
+        if (gender.equalsIgnoreCase("Male")){
+            maleRadio.click();
+        }else {
+            femaleRadio.click();
+        }
 
         driver.findElement(By.name("ctl00$MainContent$checkWeeklyEmail")).click();
         driver.findElement(By.id("MainContent_btnSubmit")).click();
