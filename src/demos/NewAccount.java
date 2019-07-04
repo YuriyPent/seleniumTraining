@@ -2,8 +2,6 @@ package demos;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class NewAccount {
@@ -24,22 +22,8 @@ public class NewAccount {
         String browserType = "chrome";
         WebDriver driver;
 
-//        1. Create WebDriver
-        if (browserType.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "sf/chromedriver.exe");
-            driver = new ChromeDriver();
-            System.out.println("Using Chrome");
-        } else if (browserType.equals("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "sf/geckodriver.exe");
-            driver = new FirefoxDriver();
-            System.out.println("Using FF");
-        } else {
-            System.setProperty("webdriver.chrome.driver", "sf/chromedriver.exe");
-            driver = new ChromeDriver();
-            System.out.println("Using Chrome");
-        }
-
-//        2. Open browser to account page --> click create account
+//        1. Open browser to account page --> click create account
+        driver = utilities.DriverFactory.open(browserType);
         driver.get("http://sdettraining.com/trguitransactions/AccountManagement.aspx");
         driver.findElement(By.xpath("//*[@id=\"ctl01\"]/div[3]/div[2]/div/div[2]/a")).click();
 
