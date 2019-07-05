@@ -12,10 +12,10 @@ public class DriverFactory {
         if (browserType.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "sf/chromedriver.exe");
             return new ChromeDriver();
-        } else if (browserType.equalsIgnoreCase("IE")){
+        } else if (browserType.equalsIgnoreCase("IE")) {
             System.setProperty("webdriver.ie.driver", "sf/IEDriverServer.exe");
             return new InternetExplorerDriver();
-        }else{
+        } else {
             System.setProperty("webdriver.gecko.driver", "sf/geckodriver.exe");
             return new FirefoxDriver();
         }

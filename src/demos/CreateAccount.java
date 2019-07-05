@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateAccount {
 
-    public static void main (String[] args){
+    public static void main(String[] args) {
 
 //        1. Create WebDriver
 //        System.setProperty("webdriver.gecko.driver", "sf/geckodriver.exe");

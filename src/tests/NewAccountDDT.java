@@ -27,6 +27,50 @@ public class NewAccountDDT {
             weeklyCheckbox, monthlyCheckbox, occasionalCheckbox, submitButton;
     private WebDriver driver;
 
+    //    Constructor that passes parameters to the test method
+    public NewAccountDDT(
+            String name,
+            String email,
+            String phone,
+            String gender,
+            String password,
+            String country,
+            String weeklyEmail,
+            String monthlyEmail,
+            String occasionalEmail) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.password = password;
+        this.country = country;
+
+        if (weeklyEmail.equalsIgnoreCase("TRUE")) {
+            this.weeklyEmail = true;
+        } else {
+            this.weeklyEmail = false;
+        }
+
+        if (monthlyEmail.equalsIgnoreCase("TRUE")) {
+            this.monthlyEmail = true;
+        } else {
+            this.monthlyEmail = false;
+        }
+
+        if (occasionalEmail.equalsIgnoreCase("TRUE")) {
+            this.occasionalEmail = true;
+        } else {
+            this.occasionalEmail = false;
+        }
+    }
+
+    //    This annotated method is designed to pass parameters into the class via constructor
+    @Parameterized.Parameters
+    public static List<String[]> getData() {
+        return CSV.get("src/resources/UserAccounts.csv.csv");
+
+    }
+
     //  This is our test method
     @Test
     public void newAccountTest() {
@@ -129,49 +173,5 @@ public class NewAccountDDT {
         monthlyCheckbox = driver.findElement(By.name("ctl00$MainContent$checkMonthlyEmail"));
         occasionalCheckbox = driver.findElement(By.name("ctl00$MainContent$checkUpdates"));
         submitButton = driver.findElement(By.id("MainContent_btnSubmit"));
-    }
-
-    //    This annotated method is designed to pass parameters into the class via constructor
-    @Parameterized.Parameters
-    public static List<String[]> getData() {
-        return CSV.get("src/resources/UserAccounts.csv.csv");
-
-    }
-
-    //    Constructor that passes parameters to the test method
-    public NewAccountDDT(
-            String name,
-            String email,
-            String phone,
-            String gender,
-            String password,
-            String country,
-            String weeklyEmail,
-            String monthlyEmail,
-            String occasionalEmail) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.gender = gender;
-        this.password = password;
-        this.country = country;
-
-        if (weeklyEmail.equalsIgnoreCase("TRUE")) {
-            this.weeklyEmail = true;
-        } else {
-            this.weeklyEmail = false;
-        }
-
-        if (monthlyEmail.equalsIgnoreCase("TRUE")) {
-            this.monthlyEmail = true;
-        } else {
-            this.monthlyEmail = false;
-        }
-
-        if (occasionalEmail.equalsIgnoreCase("TRUE")) {
-            this.occasionalEmail = true;
-        } else {
-            this.occasionalEmail = false;
-        }
     }
 }
