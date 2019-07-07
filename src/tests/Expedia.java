@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -63,10 +64,16 @@ public class Expedia {
         System.out.println("RATING: " + hotelRating);
 
 //        4. Book reservation
+        driver.findElement(
+                By.xpath("//*[@id=\"app\"]/div/div/div/main/div/section/ul/li[1]/div/div/div/section/div/div[2]/div[2]/div/form/button/span/span/span")).click();
+        String hotelPrice = driver.findElement(By.xpath("//*[@id=\"trip-summary\"]/div[2]/div[3]/div[7]/span[2]")).getText();
+        System.out.println("PRICE IS: " + hotelPrice);
 
 //        5. Fill out contact / billing
 
 //        6. Get confirmation
+        String pageTitle = driver.getTitle();
+        Assert.assertTrue(pageTitle.contains("Payment"));
 
     }
 
