@@ -20,6 +20,7 @@ public class Expedia {
     private String propertyTypeHotel = "popularFilter-0-hotel";
     private String search = "//*[@id=\"gcw-hotel-form-hp-hotel\"]/div[10]/label/button";
     private String cityName = "//*[@id=\"app\"]/div/div/div/div/div[1]/div/section/div/form/div[1]/div/div/button";
+    private String searchResult = "2";
 
     @Test
     public void hotelReservation() {
@@ -46,6 +47,8 @@ public class Expedia {
         driver.findElement(By.id(propertyTypeHotel)).click();
 
 //        3. Analyze the results and make our selection
+        driver.findElement(By.xpath(
+                "//*[@id=\"app\"]/div/div/div/div/div[1]/main/div/div/div[2]/section[1]/ol/li["+searchResult+"]/div/div/a")).click();
 
 //        4. Book reservation
 
@@ -57,7 +60,7 @@ public class Expedia {
 
     @AfterMethod
     public void tearDown() throws Exception {
-        driver.quit();
+//        driver.quit();
     }
 
     @BeforeMethod
