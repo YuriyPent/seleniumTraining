@@ -17,7 +17,7 @@ public class Login {
 //    2. Enter login information (Login page)
         LoginPage loginPage = new LoginPage(driver);
 
-//    3. Get confirmation (Dashboard Page
+//    3. Get confirmation (Dashboard Page)
 
 //    4. Close the driver
 
