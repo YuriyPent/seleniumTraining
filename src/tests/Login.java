@@ -2,6 +2,8 @@ package tests;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import pages.DashboardPage;
 import pages.LoginPage;
 import utilities.DriverFactory;
 
@@ -16,8 +18,19 @@ public class Login {
 
 //    2. Enter login information (Login page)
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.setUserName("tim@testemail.com");
+        loginPage.setPassword("trpass");
+        loginPage.clickSubmit();
 
 //    3. Get confirmation (Dashboard Page)
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        String conf = dashboardPage.confirmationMessage();
+        System.out.println(conf);
+        String title = dashboardPage.title();
+
+//        Assertions
+        Assert.assertTrue(conf.contains("Logged in successfully"));
+        Assert.assertTrue(title.contains("Account"));
 
 //    4. Close the driver
 
