@@ -1,8 +1,8 @@
 package stepImplementations;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class BDDLoginTest {
 
@@ -13,12 +13,12 @@ public class BDDLoginTest {
         System.out.println("User is on the login page");
     }
 
-    @When("user enters correct username and correct password")
+    @When("^user enters correct username and correct password$")
     public void user_enters_correct_username_and_correct_password() {
         System.out.println("User enters correct username and correct password");
     }
 
-    @Then("user gets confirmation")
+    @Then("^user gets confirmation$")
     public void user_gets_confirmation() {
         System.out.println("User gets confirmation");
     }
