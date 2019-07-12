@@ -34,6 +34,8 @@ public class BDDLoginTest {
     @Then("^user gets confirmation$")
     public void user_gets_confirmation() {
         System.out.println("User gets confirmation");
-        Assert.assertTrue(driver.findElement(By.id("conf_message")).getText().contains("success"));
+        Assert.assertTrue(driver.findElement(By.id("conf_message"))
+                .getText().contains("success"));
+        driver.close();
     }
 }
