@@ -11,14 +11,15 @@ Feature: Test the login functionality on sdet university
 
   Scenario Outline: the user should be able to login
     Given user is on the login page
-    When user enters <username>
-    And user enters <password>
+    When user enters email <username>
+    And user enters password <password>
+#    And user clicks login button
     Then user gets confirmation
 
     Examples:
 
     |username            | password  |
-    |tim@testemail.com   | trpass    |
+    |tim1@testemail.com  | trpass1   |
     |tim2@testemail.com  | trpass2   |
     |tim3@testemail.com  | trpass3   |
     |tim4@testemail.com  | trpass4   |
